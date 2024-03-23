@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "OpenLibrary_backend": {
+      "main": "src/OpenLibrary_backend/main.mo",
+      "type": "motoko"
+    },
+    "OpenLibrary_frontend": {
+      "dependencies": [
+        "OpenLibrary_backend"
+      ],
+      "source": [
+        "src/OpenLibrary_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "OpenLibrary_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
