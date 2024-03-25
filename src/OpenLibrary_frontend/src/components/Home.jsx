@@ -4,6 +4,7 @@ import { ConnectButton, ConnectDialog, Connect2ICProvider } from "@connect2ic/re
 import * as OpenLibrary_backend from "declarations/OpenLibrary_backend";
 import { useConnect } from "@connect2ic/react";
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import CreateBook from "./CreateBook";
 
 const Home = () => {
   const {principal} = useConnect();
@@ -26,10 +27,12 @@ const Home = () => {
     const btn2 = Array.from(document.getElementsByClassName('ii-styles'));
 
     const custom_style = {
-      "color" : "red",
-      "background-color": "blue",
+      "color" : "black",
+      "background-color": "white",
       "padding": "3px",
-      "margin_left": "4px"
+      "margin_left": "4px",
+      "border-radius": "3px",
+      "border": "2px solid #008CBA"
     }
 
     Object.assign(btn2[0].style, custom_style);
@@ -37,7 +40,7 @@ const Home = () => {
     const texto = Array.from(document.getElementsByClassName('button-label'));
     if (texto[0])
       texto[0].remove();
-
+      
     const img = Array.from(document.getElementsByClassName('img-styles'));
     img[0].style.height = "25px";
   });
@@ -45,10 +48,15 @@ const Home = () => {
 
   onElementAvailable(".connect-button", () => {
     const btn = Array.from(document.getElementsByClassName('connect-button'));
-    const custom_style={
-        "background-color": "blue",
-        "font-size": "17px",
+    const custom_style = {
+      "color" : "black",
+      "background-color": "white",
+      "padding": "3px",
+      "margin_left": "4px",
+      "border-radius": "3px",
+      "border": "2px solid #008CBA"
     }
+
     Object.assign(btn[0].style,custom_style);
     if ( btn[0].textContent == 'Connect' || btn[0].textContent == 'Conectar II')
         btn[0].textContent = 'Conectar II' ;
@@ -59,9 +67,8 @@ const Home = () => {
   return (
         <BrowserRouter>
             <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        
         { principal ? ( 
-            <div className="container-fluid">
+            <div className="fluid-container">
                     <Link to='/' className="navbar-brand">Open Library</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -72,33 +79,10 @@ const Home = () => {
                             <a className="nav-link active" aria-current="page" href="#"></a>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Área
+                            <a className="nav-link dropdown-toggle" href="/savebook" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Crear
                             </a>
-                            <ul className="dropdown-menu">
-                                <li><Link to='/area-nueva' className="dropdown-item" >Nuevo</Link></li>
-                                <li><Link to='/areas' className="dropdown-item" id="btnListaAreas">Lista</Link></li>
-                            </ul>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Programas
-                            </a>
-                            <ul className="dropdown-menu">
-                                <li><Link to='/programas' className="dropdown-item" >Nuevo</Link></li>
-                                <li><Link to='/programas' className="dropdown-item" >Lista</Link></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Alumnos
-                            </a>
-                            <ul className="dropdown-menu">
-                                    <li><Link to='/alumnos' className="dropdown-item" >Nuevo</Link></li>
-                                <li><Link to='/alumnos' className="dropdown-item" >Lista</Link></li>
-                            </ul>
-                        </li>
-                    
                     </ul>
                     
                     {/* <span className="fs-6 text">{principal}</span> */}
@@ -106,11 +90,10 @@ const Home = () => {
                     <ConnectDialog />
                 </div>
                 
-
             </div>
         ) : ( 
             <div className="container-fluid">
-            <a className="navbar-brand" href="#">ICP Credentials</a>
+            <a className="navbar-brand" href="#">Open Library</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
@@ -120,15 +103,14 @@ const Home = () => {
                         <a className="nav-link active" aria-current="page" href="#"></a>
                     </li>
                 </ul>
-                <ConnectButton  className="btn btn-primary" type="button"/>
+                <ConnectButton />
                 <ConnectDialog />
             </div>
         </div>
         )}
-       
     </nav>
+    
     </BrowserRouter>
-
   )
 }
 
